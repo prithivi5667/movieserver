@@ -30,7 +30,7 @@ app.use(cors(corsOptions))
 
 
 
-//app.set('view engine', 'ejs');
+app.set('view engine', 'ejs');
 app.use(cors({
     origin: "https://moviesclient.netlify.app", // restrict calls to those this address
     credentials: true,

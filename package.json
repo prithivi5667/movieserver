@@ -7,7 +7,6 @@
     "client-install": "npm install --prefix client",
     "start": "node server.js",
     "server": "node server.js"
-   
   },
   "author": "",
   "license": "ISC",
