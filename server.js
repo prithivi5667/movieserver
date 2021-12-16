@@ -11,7 +11,7 @@ var path = require('path')
 var app = express();
 
 
-const whitelist = ['http://localhost:3000', 'http://localhost:3001', 'https://nowmoviespt.herokuapp.com']
+const whitelist = ['http://localhost:3000', 'http://localhost:3001', 'https://moviesclient.netlify.app']
 const corsOptions = {
   origin: function (origin, callback) {
     console.log("** Origin of request " + origin)
