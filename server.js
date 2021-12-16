@@ -11,7 +11,7 @@ var path = require('path')
 var app = express();
 
 
-const whitelist = ['http://localhost:3000', 'http://localhost:3001', 'https://newservermovie.herokuapp.com']
+const whitelist = ['http://localhost:3000', 'http://localhost:3001', 'https://moviesclient.netlify.app']
 var corsOptions = function(req, callback) {
     var corsOptions, origin = req.header('Origin');
     console.log("Origin: ", origin);
@@ -33,7 +33,7 @@ app.use(cors(corsOptions))
 
 app.set('view engine', 'ejs');
 app.use(cors({
-    origin: "https://newservermovie.herokuapp.com", // restrict calls to those this address
+    origin: "https://moviesclient.netlify.app", // restrict calls to those this address
     credentials: true,
 }));
 app.use(bodyParser.urlencoded({ extended: false }));
