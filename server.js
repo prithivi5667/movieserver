@@ -41,8 +41,12 @@ app.use(bodyParser.json());
 
 app.use(session({
     secret: process.env.SECRET,
-    resave: false,
-    saveUninitialized: false
+    saveUninitialized: true,
+resave: false,
+maxAge: 1000 * 60 * 15,
+cookie:{
+    secure: true
+       }
 }));
   
 app.use(passport.initialize());
@@ -109,7 +113,9 @@ router.post('/signin', function(req, res){
 router.post('/register', function(req, res){
     User.register({fullName: req.body.fullName, 
         username: req.body.username,
-        contactNumber: req.body.contactNumber}, req.body.password, function(err, user){
+        contactNumber: req.body.contactNumber}, 
+        req.body.password, 
+        function(err, user){
             passport.authenticate("local")(req, res, function(){
                 res.json(user);
         });
