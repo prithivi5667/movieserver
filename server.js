@@ -12,17 +12,18 @@ var app = express();
 
 
 const whitelist = ['http://localhost:3000', 'http://localhost:3001', 'https://moviesclient.netlify.app']
-const corsOptions = {
-  origin: function (origin, callback) {
-    console.log("** Origin of request " + origin)
-    if (whitelist.indexOf(origin) !== -1 || !origin) {
-      console.log("Origin acceptable")
-      callback(null, true)
+var corsOptions = function(req, callback) {
+    var corsOptions, origin = req.header('Origin');
+    console.log("Origin: ", origin);
+
+    var originIsWhitelisted = whitelist.indexOf(origin) !== -1
+    if (originIsWhitelisted) {
+        corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
     } else {
-      console.log("Origin rejected")
-      callback(new Error('Not allowed by CORS'))
+        corsOptions = { origin: false } // disable CORS for this request
     }
-  }
+    callback(originIsWhitelisted ? null : new Error('WARNING: CORS Origin Not Allowed'), corsOptions) // callback expects two parameters: error and options
+
 }
 app.use(cors(corsOptions))
 
